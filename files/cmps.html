@@ -1,0 +1,692 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	
+	h1 {
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		5px 5px 0 0px #fff, /* The second layer */
+		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		10px 10px 0 0px #fff, /* The third layer */
+		10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		15px 15px 0 0px #fff, /* The fourth layer */
+		15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		20px 20px 0 0px #fff, /* The fifth layer */
+		20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		25px 25px 0 0px #fff, /* The fifth layer */
+		25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		5px 5px 0 0px #fff, /* The second layer */
+		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		10px 10px 0 0px #fff, /* The third layer */
+		10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+<head>
+	<title>ViSER: Video Surface Embeddings forArticulated 3D Shape Reconstruction</title>
+	<meta property="og:image" content="Path to my teaser.png"/> <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
+	<meta property="og:title" content="ViSER: Video Surface Embeddings forArticulated 3D Shape Reconstruction" />
+	<meta property="og:description" content="Paper description." />
+
+	<!-- Get from Google Analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src=""></script> 
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-75863369-6');
+	</script>
+</head>
+
+<body>
+	<br>
+	<center>
+		<span style="font-size:32px">ViSER: Video Surface Embeddings forArticulated 3D Shape Reconstruction</span>
+		<table align=center width=600px>
+	      <span style="font-size:24px">Anonymous Submission 2319</span>
+        
+		</table>
+	</center>
+    
+    <h3><a href='./index.html'>[Back]</a></hr>
+    <br>
+    <h3>Comparisons</hr>
+	<br>
+	<center>
+		<table align=center width=850px>
+			<tr>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/dance-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-dance-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-dance-twirl-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/dance-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+			<tr>
+				<td width=250px>
+                         <img width="100%">
+                          <source  src="./cmps/lasr-dance-sta.mp4">
+                         </img>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-dance-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-dance-twirl-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/dance-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=850px>
+			<tr>
+				<td>
+				 DAVIS-dance-twirl. From left to right: reference video, results of LASR, results of VIBE+SMPLify, and results of ViSER.
+				                    Top: reconstructed 3D shape. Bottom: reconstructed 3D shape at 1st frame.
+				</td>
+			</tr>
+		</table>
+	</center>
+	<hr>
+	
+    <br>
+	<center>
+		<table align=center width=850px>
+			<tr>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rbreakdance-flare-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rbreakdance-flare-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rbreakdance-flare-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rbreakdance-flare-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+			<tr>
+				<td width=250px>
+                         <img width="100%">
+                          <source  src="./cmps/lasr-rbreakdance-flare-sta.mp4">
+                         </img>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rbreakdance-flare-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rbreakdance-flare-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rbreakdance-flare-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=850px>
+			<tr>
+				<td>
+				 DAVIS-break-1. From left to right: reference video, results of LASR, results of VIBE+SMPLify, and results of ViSER.
+				                    Top: reconstructed 3D shape. Bottom: reconstructed 3D shape at 1st frame.
+				</td>
+			</tr>
+		</table>
+	</center>
+	<hr>
+	   
+    <br>
+	<center>
+		<table align=center width=850px>
+			<tr>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rbreakdance-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rbreakdance-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rbreakdance-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rbreakdance-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+			<tr>
+				<td width=250px>
+                         <img width="100%">
+                          <source  src="./cmps/lasr-rbreakdance-sta.mp4">
+                         </img>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rbreakdance-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rbreakdance-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rbreakdance-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=850px>
+			<tr>
+				<td>
+				 DAVIS-break-2. From left to right: reference video, results of LASR, results of VIBE+SMPLify, and results of ViSER.
+				                    Top: reconstructed 3D shape. Bottom: reconstructed 3D shape at 1st frame. VIBE+SMPLify fails to reconstruct most of the frames in this video.
+				</td>
+			</tr>
+		</table>
+	</center>
+	<hr>
+	
+    <br>
+	<center>
+		<table align=center width=850px>
+			<tr>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rparkour-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rparkour-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rparkour-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rparkour-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+			<tr>
+				<td width=250px>
+                         <img width="100%">
+                          <source  src="./cmps/lasr-rparkour-sta.mp4">
+                         </img>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rparkour-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rparkour-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rparkour-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=850px>
+			<tr>
+				<td>
+				 DAVIS-parkour. From left to right: reference video, results of LASR, results of VIBE+SMPLify, and results of ViSER.
+				                    Top: reconstructed 3D shape. Bottom: reconstructed 3D shape at 1st frame.
+				</td>
+			</tr>
+		</table>
+	</center>
+	<hr>
+	
+    <br>
+	<center>
+		<table align=center width=850px>
+			<tr>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rballet1v4-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rballet1v4-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rballet1v4-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rballet1v4-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+			<tr>
+				<td width=250px>
+                         <img width="100%">
+                          <source  src="./cmps/lasr-rballet1v4-sta.mp4">
+                         </img>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rballet1v4-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rballet1v4-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rballet1v4-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=850px>
+			<tr>
+				<td>
+				 DAVIS-ballet-1. From left to right: reference video, results of LASR, results of VIBE+SMPLify, and results of ViSER.
+				                    Top: reconstructed 3D shape. Bottom: reconstructed 3D shape at 1st frame.
+				</td>
+			</tr>
+		</table>
+	</center>
+	<hr>
+    
+    <br>
+	<center>
+		<table align=center width=850px>
+			<tr>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rballet1v5-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rballet1v5-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rballet1v5-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rballet1v5-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+			<tr>
+				<td width=250px>
+                         <img width="100%">
+                          <source  src="./cmps/lasr-rballet1v5-sta.mp4">
+                         </img>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rballet1v5-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rballet1v5-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rballet1v5-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=850px>
+			<tr>
+				<td>
+				 DAVIS-ballet-2. From left to right: reference video, results of LASR, results of VIBE+SMPLify, and results of ViSER.
+				                    Top: reconstructed 3D shape. Bottom: reconstructed 3D shape at 1st frame.
+				</td>
+			</tr>
+		</table>
+	</center>
+	<hr>
+	
+    <br>
+	<center>
+		<table align=center width=850px>
+			<tr>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rballet1v6-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rballet1v6-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rballetv6-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rballet1v6-nov.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+			<tr>
+				<td width=250px>
+                         <img width="100%">
+                          <source  src="./cmps/lasr-rballet1v6-sta.mp4">
+                         </img>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-rballet1v6-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/vibe-rballetv6-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/rballet1v6-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=850px>
+			<tr>
+				<td>
+				 DAVIS-ballet-3. From left to right: reference video, results of LASR, results of VIBE+SMPLify, and results of ViSER.
+				                    Top: reconstructed 3D shape. Bottom: reconstructed 3D shape at 1st frame.
+				</td>
+			</tr>
+		</table>
+	</center>
+	<hr>
+    
+    <br>
+	<center>
+		<table align=center width=850px>
+			<tr>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0009-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0010-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0014-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0038-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0058-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0075-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant-walk-vid.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+			<tr>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-relephant0009-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-relephant0010-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-relephant0014-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-relephant0038-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-relephant0058-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-relephant0075-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./cmps/lasr-relephant-walk-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+			<tr>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0009-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0010-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0014-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0038-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0058-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant0075-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+				<td width=250px>
+                         <video playsinline controls autoplay muted loop width="100%">
+                          <source  src="./resources/relephant-walk-sta.mp4" type="video/mp4">
+                         </video>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=850px>
+			<tr>
+				<td>
+				 Elephants. From top to bottom: reference video, results of LASR, and results of ViSER. Reconstruction on the 1st frame is shown.
+				</td>
+			</tr>
+		</table>
+	</center>
+	<hr>
+    
+
+</body>
+</html>
+
