@@ -1,380 +1,410 @@
-
 <!-- saved from url=(0047)https://www.cs.cmu.edu/~peiyunh/tiny/index.html -->
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="StyleSheet" href="./files/style.css" type="text/css" media="all">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-    <title>ViSER: Video-Specific Surface Embeddings for Articulated 3D Shape Reconstruction</title>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="StyleSheet" href="./files/style.css" type="text/css" media="all">
 
-    <style type="text/css">
-      body {
-	    font-family : Times;
-	    background-color : #f2f2f2;
-	    font-size : 15px;
-      }
+  <title>ViSER: Video-Specific Surface Embeddings for Articulated 3D Shape Reconstruction</title>
 
-      .content {
-	    width : 800px;
-	    padding : 25px 25px;
-	    margin : 25px auto;
-	    background-color : #fff;
-	    border-radius: 20px;
-      }
-      .description {
-        font-family: "Times";
-        white-space: pre;
-        text-align: left;
-      }
+  <style type="text/css">
+    body {
+      font-family: Times;
+      background-color: #f2f2f2;
+      font-size: 15px;
+    }
 
-      .content-title {
-	    background-color : inherit;
+    .content {
+      width: 800px;
+      padding: 25px 25px;
+      margin: 25px auto;
+      background-color: #fff;
+      border-radius: 20px;
+    }
+
+    .description {
+      font-family: "Times";
+      white-space: pre;
+      text-align: left;
+    }
+
+    .content-title {
+      background-color: inherit;
       margin-top: 5px;
       padding-top: 5px;
-	    margin-bottom : 0;
-	    padding-bottom : 0;
-      }
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
 
-      a, a:visited {
-	    text-decoration: none;
-	    color : blue;
-      }
+    a,
+    a:visited {
+      text-decoration: none;
+      color: blue;
+    }
 
-      .anchor {
+    .anchor {
       color: inherit;
-      }
-      #authors {
-	    text-align : center;
-      }
+    }
 
-      #conference {
-	    text-align : center;
-	    font-style : italic;
-      }
+    #authors {
+      text-align: center;
+    }
 
-      #authors a {
-	    margin : 0 10px;
-      }
+    #conference {
+      text-align: center;
+      font-style: italic;
+    }
 
-      h1 {
-	    text-align : center;
-	    font-family : Times;
-	    font-size : 35px;
-      }
+    #authors a {
+      margin: 0 10px;
+    }
 
-      h2 {
-	    font-family : Times;
-	    font-size : 25px;
-	    padding : 0; margin : 10px;
-      }
+    h1 {
+      text-align: center;
+      font-family: Times;
+      font-size: 35px;
+    }
 
-      h3 {
-	    font-family : Times;
-	    font-size : 20px;
-	    padding : 0; margin : 10px;
-      }
+    h2 {
+      font-family: Times;
+      font-size: 25px;
+      padding: 0;
+      margin: 10px;
+    }
 
-      p {
-	    font-family : Times;
-	    line-height : 130%;
-	    margin : 10px;
-      }
+    h3 {
+      font-family: Times;
+      font-size: 20px;
+      padding: 0;
+      margin: 10px;
+    }
 
-      big {
-	    font-family : Times;
-	    font-size : 20px;
-      }
+    p {
+      font-family: Times;
+      line-height: 130%;
+      margin: 10px;
+    }
 
-      li {
-	    margin : 10px 0;
-      }
+    big {
+      font-family: Times;
+      font-size: 20px;
+    }
 
-      .samples {
-	    float : left;
-	    width : 50%;
-	    text-align : center;
-      }
+    li {
+      margin: 10px 0;
+    }
 
-      .cond {
-	    float : left;
-	    margin : 0 40px;
-      }
+    .samples {
+      float: left;
+      width: 50%;
+      text-align: center;
+    }
 
-      .cond-container {
-	    width : 700px;
-	    margin : 0 auto;
-	    text-align : center;
-      }
-     #vidalign {
-         display: block;
-         margin: 0px;
-         padding: 0px;
-         position: relative;
-         top: 90px;
-         height: auto;
-         max-width: auto;
-         overflow-y: hidden;
-         overflow-x:auto;
-         word-wrap:normal;
-         white-space:nowrap;
-     }
+    .cond {
+      float: left;
+      margin: 0 40px;
+    }
 
-    </style>
+    .cond-container {
+      width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-  </head>
+    #vidalign {
+      display: block;
+      margin: 0px;
+      padding: 0px;
+      position: relative;
+      top: 90px;
+      height: auto;
+      max-width: auto;
+      overflow-y: hidden;
+      overflow-x: auto;
+      word-wrap: normal;
+      white-space: nowrap;
+    }
+  </style>
+
+</head>
 
 
 
-  <body>
+<body>
 
-    <div class="content content-title" style="text-align: center;">
-	    <h1>ViSER: Video-Specific Surface Embeddings for Articulated 3D Shape Reconstruction</h1>
-	<big style="color:grey;">
-                    NeurIPS 2021
-        </big>    
-	<p id="authors">
-      <table align="center" style="width:100%; text-align:center; table-layout: fixed">
-        <tr>
-	      <th><a href="https://gengshan-y.github.io/">Gengshan Yang<sup>1</sup></a></th>
-	      <th><a href="https://deqings.github.io/">Deqing Sun<sup>2</sup></a></th>
-	      <th><a href="https://varunjampani.github.io/">Varun Jampani<sup>2</sup></a></th>
-	      <th><a href="https://people.csail.mit.edu/drdaniel/">Daniel Vlasic<sup>2</sup></a></th>
-	      <th><a href="https://people.csail.mit.edu/fcole/">Forrester Cole<sup>2</sup></a></th>
-        </tr>
-      </table>
-      <table align="center" style="width:100%; text-align:center; table-layout: fixed">
-        <tr>
-	      <th><a href="https://people.csail.mit.edu/celiu/">Ce Liu<sup>4</sup></a></th>
-          <th><a href="http://www.cs.cmu.edu/~deva/">Deva Ramanan<sup>1,3</sup></a></th>
-        </tr>
-      </table>
-      <table align="center" style="width:100%; text-align:center; table-layout: fixed">
-        <th><sup>1</sup>Carnegie Mellon University</th>
-        <th><sup>2</sup>Google Research</th>
-        <th><sup>3</sup>Argo AI</th>
-        <th><sup>4</sup>Microsoft Azure AI</th>
-      </table>
-	    </p>
-	    <p>
-	    </p>
+  <div class="content content-title" style="text-align: center;">
+    <h1>ViSER: Video-Specific Surface Embeddings for Articulated 3D Shape Reconstruction</h1>
+    <big style="color:grey;">
+      NeurIPS 2021
+    </big>
+    <p id="authors">
+    <table align="center" style="width:100%; text-align:center; table-layout: fixed">
+      <tr>
+        <th><a href="https://gengshan-y.github.io/">Gengshan Yang<sup>1</sup></a></th>
+        <th><a href="https://deqings.github.io/">Deqing Sun<sup>2</sup></a></th>
+        <th><a href="https://varunjampani.github.io/">Varun Jampani<sup>2</sup></a></th>
+        <th><a href="https://people.csail.mit.edu/drdaniel/">Daniel Vlasic<sup>2</sup></a></th>
+        <th><a href="https://people.csail.mit.edu/fcole/">Forrester Cole<sup>2</sup></a></th>
+      </tr>
+    </table>
+    <table align="center" style="width:100%; text-align:center; table-layout: fixed">
+      <tr>
+        <th><a href="https://people.csail.mit.edu/celiu/">Ce Liu<sup>4</sup></a></th>
+        <th><a href="http://www.cs.cmu.edu/~deva/">Deva Ramanan<sup>1,3</sup></a></th>
+      </tr>
+    </table>
+    <table align="center" style="width:100%; text-align:center; table-layout: fixed">
+      <th><sup>1</sup>Carnegie Mellon University</th>
+      <th><sup>2</sup>Google Research</th>
+      <th><sup>3</sup>Argo AI</th>
+      <th><sup>4</sup>Microsoft Azure AI</th>
+    </table>
+    </p>
+    <p>
+    </p>
+  </div>
+
+
+
+
+  <div class="content">
+    <figure style="font-family: Times; font-weight: normal; margin: 0px; padding: 0px; border: 0px; text-align: left">
+      <video playsinline controls autoplay loop muted width="810" height="320">
+        <source src="./files/teaserv1.mp4" type="video/mp4">
+      </video>
+      <br>
+      <figcaption> Given a long video or multiple short videos, we jointly learn articulated 3D shapes and a joint
+        pixel-surface embedding to establish dense correspondences over video frames. As a result, accurate shape, long
+        term trajectory and meaningful part segmentation can be recovered, without using a pre-defined shape template.
+    </figure>
+  </div>
+
+
+
+
+
+
+  <div class="content">
+    <h2>Abstract</h2>
+    <p>
+      We introduce ViSER, a method for recovering articulated 3D shapes and dense 3D trajectories from monocular videos.
+      Previous work on high-quality reconstruction of dynamic 3D shapes typically relies on multiple camera views,
+      strong category-specific priors, or 2D keypoint supervision.
+      We show that none of these are required if one can reliably estimate long-range 2D point correspondences, making
+      use of only 2D object masks and two-frame optical flow as inputs.
+      ViSER infers correspondences by matching 2D pixels to a canonical, deformable 3D mesh via <i>video-specific
+        surface embeddings</i> that capture the pixel appearance of each surface point.
+      These embeddings behave as a continous set of keypoint descriptors defined over the mesh surface, which can be
+      used to establish dense long-range correspondences across pixels.
+      The surface embeddings are implemented via coordinate-based MLPs that are fit to each video via contrastive
+      reconstruction losses.
+      Experimental results show that ViSER compares favorably against prior work on challenging videos of humans with
+      loose clothing and unusual poses as well as animals videos from DAVIS and YTVOS.
+    </p>
+    <div id="teaser" style="margin: 12px; text-align: left;border-top: 1px solid lightgray;padding-top: 12px;">
+      <a href="https://openreview.net/forum?id=-JJy-Hw8TFB">
+        <strong>[Paper]</strong>
+      </a>
+
+      <a href="https://github.com/gengshan-y/viser">
+        <strong>[Code]</strong>
+      </a>
+
+      <a href="https://docs.google.com/presentation/d/1JJesy5Vh7G6aroI57c8VsEHO3vJ2p7FVyThGFsy79Wc/edit?usp=sharing">
+        <strong>[Poster]</strong>
+      </a>
+
+      <a href="https://docs.google.com/presentation/d/191PMvZDYiC8Mm5G44-Iexi0aaIrFVKKuNzI-4Xr3cII/edit?usp=sharing">
+        <strong>[Slides]</strong>
+      </a>
+
     </div>
+  </div>
 
-
-
-
-    <div class="content">
-      <figure style="font-family: Times; font-weight: normal; margin: 0px; padding: 0px; border: 0px; text-align: left">
-         <video playsinline controls autoplay loop muted width="810" height="320">
-          <source  src="./files/teaserv1.mp4" type="video/mp4">
-         </video>
-         <br>
-	      <figcaption> Given a long video or multiple short videos, we jointly learn articulated 3D shapes and a joint pixel-surface embedding to establish dense correspondences over video frames. As a result, accurate shape, long term trajectory and meaningful part segmentation can be recovered, without using a pre-defined shape template.
-      </figure>
-    </div>
-    
-    
-    
-    
-    
-    
-    <div class="content">
-      <h2>Abstract</h2>
-      <p>
-        We introduce ViSER, a method for recovering articulated 3D shapes and dense 3D trajectories from monocular videos.
-        Previous work on high-quality reconstruction of dynamic 3D shapes typically relies on multiple camera views, strong category-specific priors, or 2D keypoint supervision.
-        We show that none of these are required if one can reliably estimate long-range 2D point correspondences, making use of only 2D object masks and two-frame optical flow as inputs.
-        ViSER infers correspondences by matching 2D pixels to a canonical, deformable 3D mesh via <i>video-specific surface embeddings</i> that capture the pixel appearance of each surface point. 
-        These embeddings behave as a continous set of keypoint descriptors defined over the mesh surface, which can be used to establish dense long-range correspondences across pixels.
-        The surface embeddings are implemented via coordinate-based MLPs that are fit to each video via contrastive reconstruction losses.
-        Experimental results show that ViSER compares favorably against prior work on challenging videos of humans with loose clothing and unusual poses as well as animals videos from DAVIS and YTVOS.
-	    </p>
-      <div id="teaser" style="margin: 12px; text-align: left;border-top: 1px solid lightgray;padding-top: 12px;">
-	      <a href="https://openreview.net/forum?id=-JJy-Hw8TFB">
-	        <strong>[Paper]</strong>
-	      </a>           
-            
-          <a href="https://github.com/gengshan-y/viser-release">
-	        <strong>[Code]</strong>
-          </a>
-            
-          <a href="https://docs.google.com/presentation/d/1JJesy5Vh7G6aroI57c8VsEHO3vJ2p7FVyThGFsy79Wc/edit?usp=sharing">
-	        <strong>[Poster]</strong>
-          </a>
-            
-          <a href="https://docs.google.com/presentation/d/191PMvZDYiC8Mm5G44-Iexi0aaIrFVKKuNzI-4Xr3cII/edit?usp=sharing">
-	        <strong>[Slides]</strong>
-          </a>
-	      
-      </div>
-    </div>
-    
-    <div class="content">
-            <h2>Bibtex</h2>
-            <p class="description">@inproceedings{yang2021viser,
-  title={ViSER: Video-Specific Surface Embeddings for Articulated 3D Shape Reconstruction},
-  author={Yang, Gengshan 
+  <div class="content">
+    <h2>Bibtex</h2>
+    <p class="description">@inproceedings{yang2021viser,
+      title={ViSER: Video-Specific Surface Embeddings for Articulated 3D Shape Reconstruction},
+      author={Yang, Gengshan
       and Sun, Deqing
       and Jampani, Varun
       and Vlasic, Daniel
       and Cole, Forrester
       and Liu, Ce
       and Ramanan, Deva},
-  booktitle = {NeurIPS},
-  year={2021}
-}  </p>
-    </div>
-   
-    <div class="content">
-      <div style="float: right; width:70px; margin-top: 0px; margin-bottom: 25px">
-      </div>
-      <h2>Short video</h2>
-         <video controls width="810" height="520">
-          <source  src="./files/video.mp4" type="video/mp4">
-         </video>
-    </div>
-    
-    <div class="content">
-      <div style="float: right; width:70px; margin-top: 0px; margin-bottom: 25px">
-      </div>
-      <h2>Long video</h2>
-            <div id="presentation-embed-38967354"></div>
-            <script src='https://slideslive.com/embed_presentation.js'></script>
-            <script>
-                embed = new SlidesLiveEmbed('presentation-embed-38967354', {
-                    presentationId: '38967354',
-                    autoPlay: false, // change to true to autoplay the embedded presentation
-                    verticalEnabled: true
-                });
-            </script>
-    </div>
-      
+      booktitle = {NeurIPS},
+      year={2021}
+      } </p>
+  </div>
 
-    <div class="content">
-      <div style="float: right; width:70px; margin-top: 0px; margin-bottom: 25px">
-      </div>
-      <h2>Results</h2>
-      <h3>Comparisons<a href='./cmps.html'> [More]</a></h3>
-        <div>
-		<table align=center width="100%">
-			<tr>
-				<td width=250px>
-                         <video playsinline controls autoplay muted loop width="100%">
-                          <source  src="./files/results/dance-vid.mp4" type="video/mp4">
-                         </video>
-				</td>
-				<td width=250px>
-                         <video playsinline controls autoplay muted loop width="100%">
-                          <source  src="./files/cmps/lasr-dance-nov.mp4" type="video/mp4">
-                         </video>
-				</td>
-				<td width=250px>
-                         <video playsinline controls autoplay muted loop width="100%">
-                          <source  src="./files/cmps/vibe-dance-twirl-nov.mp4" type="video/mp4">
-                         </video>
-				</td>
-				<td width=250px>
-                         <video playsinline controls autoplay muted loop width="100%">
-                          <source  src="./files/results/dance-nov.mp4" type="video/mp4">
-                         </video>
-				</td>
-			</tr>
-			<tr>
-				<td width=250px>
-                         <img width="100%">
-                          <source  src="./files/cmps/lasr-dance-sta.mp4">
-                         </img>
-				</td>
-				<td width=250px>
-                         <video playsinline controls autoplay muted loop width="100%">
-                          <source  src="./files/cmps/lasr-dance-sta.mp4" type="video/mp4">
-                         </video>
-				</td>
-				<td width=250px>
-                         <video playsinline controls autoplay muted loop width="100%">
-                          <source  src="./files/cmps/vibe-dance-twirl-sta.mp4" type="video/mp4">
-                         </video>
-				</td>
-				<td width=250px>
-                         <video playsinline controls autoplay muted loop width="100%">
-                          <source  src="./files/results/dance-sta.mp4" type="video/mp4">
-                         </video>
-				</td>
-			</tr>
-		</table>
-		<table align=center>
-			<tr>
-				<td>
-				 DAVIS-dance-twirl (90 frames). From left to right: reference video, results of LASR, results of VIBE+SMPLify, and results of ViSER.
-				                    Top: reconstructed 3D shape. Bottom: reconstructed 3D shape at 1st frame.
-				</td>
-			</tr>
-		</table>
-         </div>
-        <hr>
-        <h3>Results on athletic human <a href='./human.html'> [More]</a></h3>
-		<table align=center width=750px>
-			<tr>
-				<td width=750px>
-                         <video playsinline controls autoplay muted loop width="100%">
-                          <source  src="./files/results/rbreakdance-flare-all.mp4" type="video/mp4">
-                         </video>
-				</td>
-			</tr>
-		</table>
-		<table align=center width=750px>
-			<tr>
-				<td>
-				 DAVIS-breakdance-flare. Top left: reference video. Top middle: reconstructed nonrigid 3D shape. Top right: reconstruction 3D shape at 1st frame.
-				                Bottom left: trajectory. Bottom middle: part segmnetation. Bottom right: textured mesh.
-				</td>
-			</tr>
-		</table>
-        <hr>
-        <h3>Results on YTVOS-elephants<a href='./elephants.html'> [More]</a></h3>
-		<table align=center width=750px>
-			<tr>
-				<td width=850px>
-                         <video playsinline controls autoplay muted loop width="100%">
-                          <source  src="./files/results/relephant0009-all.mp4" type="video/mp4">
-                         </video>
-				</td>
-			</tr>
-		</table>
-		<table align=center width=750px>
-			<tr>
-				<td>
-				 Elephant-1. Top left: reference video. Top middle: reconstructed nonrigid 3D shape. Top right: reconstruction 3D shape at 1st frame.
-				                Bottom left: trajectory. Bottom middle: part segmnetation. Bottom right: textured mesh.
-				</td>
-			</tr>
-		</table>
+  <div class="content">
+    <div style="float: right; width:70px; margin-top: 0px; margin-bottom: 25px">
     </div>
-    
+    <h2>Short video</h2>
+    <video controls width="810" height="520">
+      <source src="./files/video.mp4" type="video/mp4">
+    </video>
+  </div>
 
-    <div class="content">
-            <h2>Related projects</h2>
-	    <p>
-	    <a href="https://lasr-google.github.io/"> LASR: Learning Articulated Shape Reconstruction from a Monocular Video. CVPR 2021.</a> <br>
-	    <a href="https://arxiv.org/abs/2011.12438"> Continuous Surface Embeddings. NeurIPS 2020. </a> <br>
-	    <a href="https://dove3d.github.io/"> DOVE: Learning Deformable 3D Objects by Watching Videos. arXiv preprint.</a> <br>
-             <a href="https://sites.google.com/nvidia.com/unsup-mesh-2020/">Self-supervised Single-view 3D Reconstruction via Semantic Consistency. ECCV 2020.</a> <br>
-             <a href="https://shubham-goel.github.io/ucmr/">Shape and Viewpoints without Keypoints. ECCV. 2020.</a> <br>
-             <a href="https://nileshkulkarni.github.io/acsm/">Articulation Aware Canonical Surface Mapping. CVPR 2020.</a> <br>
-             <a href="https://akanazawa.github.io/cmr/">Learning Category-Specific Mesh Reconstruction from Image Collections. ECCV 2018.</a> <br>
-
-	    </p>
+  <div class="content">
+    <div style="float: right; width:70px; margin-top: 0px; margin-bottom: 25px">
     </div>
-    
-    <div class="content">
-            <h2>Acknowledgments</h2>
-	    <p>This work was supported by Google Cloud Platform (GCP) awards received from Google and the CMU Argo AI Center for Autonomous Vehicle Research. We thank William T. Freeman and many others from CMU and Google for providing valuable feedback.</p>
-    </div>
+    <h2>Long video</h2>
+    <div id="presentation-embed-38967354"></div>
+    <script src='https://slideslive.com/embed_presentation.js'></script>
+    <script>
+      embed = new SlidesLiveEmbed('presentation-embed-38967354', {
+        presentationId: '38967354',
+        autoPlay: false, // change to true to autoplay the embedded presentation
+        verticalEnabled: true
+      });
+    </script>
+  </div>
 
 
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
-<tr><td>
-    <p align="right"><font size="2">
-        <a href="https://www.cs.cmu.edu/~peiyunh/">Webpage design borrowed from Peiyun Hu</a> </font>
+  <div class="content">
+    <div style="float: right; width:70px; margin-top: 0px; margin-bottom: 25px">
+    </div>
+    <h2>Results</h2>
+    <h3>Comparisons<a href='./cmps.html'> [More]</a></h3>
+    <div>
+      <table align=center width="100%">
+        <tr>
+          <td width=250px>
+            <video playsinline controls autoplay muted loop width="100%">
+              <source src="./files/results/dance-vid.mp4" type="video/mp4">
+            </video>
+          </td>
+          <td width=250px>
+            <video playsinline controls autoplay muted loop width="100%">
+              <source src="./files/cmps/lasr-dance-nov.mp4" type="video/mp4">
+            </video>
+          </td>
+          <td width=250px>
+            <video playsinline controls autoplay muted loop width="100%">
+              <source src="./files/cmps/vibe-dance-twirl-nov.mp4" type="video/mp4">
+            </video>
+          </td>
+          <td width=250px>
+            <video playsinline controls autoplay muted loop width="100%">
+              <source src="./files/results/dance-nov.mp4" type="video/mp4">
+            </video>
+          </td>
+        </tr>
+        <tr>
+          <td width=250px>
+            <img width="100%">
+            <source src="./files/cmps/lasr-dance-sta.mp4">
+            </img>
+          </td>
+          <td width=250px>
+            <video playsinline controls autoplay muted loop width="100%">
+              <source src="./files/cmps/lasr-dance-sta.mp4" type="video/mp4">
+            </video>
+          </td>
+          <td width=250px>
+            <video playsinline controls autoplay muted loop width="100%">
+              <source src="./files/cmps/vibe-dance-twirl-sta.mp4" type="video/mp4">
+            </video>
+          </td>
+          <td width=250px>
+            <video playsinline controls autoplay muted loop width="100%">
+              <source src="./files/results/dance-sta.mp4" type="video/mp4">
+            </video>
+          </td>
+        </tr>
+      </table>
+      <table align=center>
+        <tr>
+          <td>
+            DAVIS-dance-twirl (90 frames). From left to right: reference video, results of LASR, results of
+            VIBE+SMPLify, and results of ViSER.
+            Top: reconstructed 3D shape. Bottom: reconstructed 3D shape at 1st frame.
+          </td>
+        </tr>
+      </table>
+    </div>
+    <hr>
+    <h3>Results on athletic human <a href='./human.html'> [More]</a></h3>
+    <table align=center width=750px>
+      <tr>
+        <td width=750px>
+          <video playsinline controls autoplay muted loop width="100%">
+            <source src="./files/results/rbreakdance-flare-all.mp4" type="video/mp4">
+          </video>
+        </td>
+      </tr>
+    </table>
+    <table align=center width=750px>
+      <tr>
+        <td>
+          DAVIS-breakdance-flare. Top left: reference video. Top middle: reconstructed nonrigid 3D shape. Top right:
+          reconstruction 3D shape at 1st frame.
+          Bottom left: trajectory. Bottom middle: part segmnetation. Bottom right: textured mesh.
+        </td>
+      </tr>
+    </table>
+    <hr>
+    <h3>Results on YTVOS-elephants<a href='./elephants.html'> [More]</a></h3>
+    <table align=center width=750px>
+      <tr>
+        <td width=850px>
+          <video playsinline controls autoplay muted loop width="100%">
+            <source src="./files/results/relephant0009-all.mp4" type="video/mp4">
+          </video>
+        </td>
+      </tr>
+    </table>
+    <table align=center width=750px>
+      <tr>
+        <td>
+          Elephant-1. Top left: reference video. Top middle: reconstructed nonrigid 3D shape. Top right: reconstruction
+          3D shape at 1st frame.
+          Bottom left: trajectory. Bottom middle: part segmnetation. Bottom right: textured mesh.
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="content">
+    <h2>Related projects</h2>
+    <p>
+      <a href="https://lasr-google.github.io/"> LASR: Learning Articulated Shape Reconstruction from a Monocular Video.
+        CVPR 2021.</a> <br>
+      <a href="https://arxiv.org/abs/2011.12438"> Continuous Surface Embeddings. NeurIPS 2020. </a> <br>
+      <a href="https://dove3d.github.io/"> DOVE: Learning Deformable 3D Objects by Watching Videos. arXiv preprint.</a>
+      <br>
+      <a href="https://sites.google.com/nvidia.com/unsup-mesh-2020/">Self-supervised Single-view 3D Reconstruction via
+        Semantic Consistency. ECCV 2020.</a> <br>
+      <a href="https://shubham-goel.github.io/ucmr/">Shape and Viewpoints without Keypoints. ECCV. 2020.</a> <br>
+      <a href="https://nileshkulkarni.github.io/acsm/">Articulation Aware Canonical Surface Mapping. CVPR 2020.</a> <br>
+      <a href="https://akanazawa.github.io/cmr/">Learning Category-Specific Mesh Reconstruction from Image Collections.
+        ECCV 2018.</a> <br>
+
     </p>
-</td></tr>
-</table>
+  </div>
 
-</body></html> 
+  <div class="content">
+    <h2>Acknowledgments</h2>
+    <p>This work was supported by Google Cloud Platform (GCP) awards received from Google and the CMU Argo AI Center for
+      Autonomous Vehicle Research. We thank William T. Freeman and many others from CMU and Google for providing
+      valuable feedback.</p>
+  </div>
+
+
+  <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+    <tr>
+      <td>
+        <p align="right">
+          <font size="2">
+            <a href="https://www.cs.cmu.edu/~peiyunh/">Webpage design borrowed from Peiyun Hu</a>
+          </font>
+        </p>
+      </td>
+    </tr>
+  </table>
+
+</body>
+
+</html>
